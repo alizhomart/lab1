@@ -27,11 +27,11 @@ public class DBManager {
     public ArrayList<User> getAllUsers(){
         ArrayList<User> users = new ArrayList<>();
         try{
-            //Готовим наш запрос в базу данных
+            //Готовим запрос в базу данных
             PreparedStatement st = connection.prepareStatement("SELECT * FROM test");
-            //При запуске данного запроса мы в ответ получаем объект класса ResultSet.
+            //При запуске данного запроса в ответ получаем объект класса ResultSet.
             ResultSet rs = st.executeQuery();
-            //По сути, ResultSet - это и есть наша таблица. Через цикл мы пробежимся по каждой строке данной таблицы
+            //ResultSet - это наша таблица. Через цикл мы пробежимся по каждой строке данной таблицы
             while (rs.next()){
                 //Получаем данные по каждой колонке. Конвертируем их в привычные нам переменные
                 Long id = rs.getLong("id");
@@ -39,7 +39,7 @@ public class DBManager {
                 String surname = rs.getString("surname");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
-                //Добавляем новую машину в список
+                //Добавляем новую user в список
                 users.add(new User(id,name,surname, username, password));
             }
         }catch (Exception e){
